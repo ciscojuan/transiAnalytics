@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'login'
+    'login',
+    'analytics',
 ]
 
 MIDDLEWARE = [
@@ -124,10 +125,11 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    'C:/Users/camil/Documents/Projects/transinalytics/static/',
+
 ]
 
 STATIC_URL = '/static/'
+
 
 
 
