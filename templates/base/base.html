@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!-- Header -->
+<head>
+  {% block head %}
+  {% endblock head %}
+</head>
+<!-- /Header -->
+
+<body class="nav-md">
+<div class="container body">
+  <div class="main_container">
+    <div class="col-md-3 left_col">
+      <div class="left_col scroll-view">
+        <div class="navbar nav_title" style="border: 0;">
+          <a href="index.html" class="site_title"><img src="{% static 'images/transinalytics_logo.png' %}" width="30%"><span>Transinalytics</span></a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <!-- menu profile quick info -->
+        <div class="profile clearfix">
+          <div class="profile_pic">
+            <img src="{% static 'images/img.jpg' %}" alt="..." class="img-circle profile_img">
+          </div>
+          <div class="profile_info">
+            <span>Bienvenido,</span>
+            <h2>{{ user_name }}</h2>
+          </div>
+        </div>
+        <!-- /menu profile quick info -->
+
+        <br />
+
+        <!-- sidebar menu -->
+          {% block side_bar %}
+          {% endblock side_bar %}
+        <!-- /sidebar menu -->
+
+        <!-- /menu footer buttons -->
+        <div class="sidebar-footer hidden-small">
+          <a data-toggle="tooltip" data-placement="top" title="Settings' %}">
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+          </a>
+          <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+          </a>
+          <a data-toggle="tooltip" data-placement="top" title="Lock">
+            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+          </a>
+          <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+          </a>
+        </div>
+        <!-- /menu footer buttons -->
+      </div>
+    </div>
+
+    <!-- top navigation -->
+      {% block top_navigation %}
+      {% endblock top_navigation %}
+    <!-- /top navigation -->
+
+    <!-- page content -->
+    <div class="right_col" role="main">
+      {% block content %}
+      {% endblock content %}
+    </div>
+    <!-- /page content -->
+
+    <!-- footer content -->
+    <footer>
+      {% block footer %}
+      {% endblock footer %}
+    </footer>
+    <!-- /footer content -->
+  </div>
+</div>
+{% load static %}
+<!-- jQuery -->
+<script src="{% static 'assets/jquery/dist/jquery.min.js' %}"></script>
+<!-- Bootstrap -->
+<script src="{% static 'assets/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<!-- FastClick -->
+<script src="{% static 'assets/fastclick/lib/fastclick.js' %}"></script>
+<!-- NProgress -->
+<script src="{% static 'assets/nprogress/nprogress.js' %}"></script>
+<!-- Chart.js -->
+<script src="{% static 'assets/Chart.js/dist/Chart.min.js' %}"></script>
+<!-- gauge.js -->
+<script src="{% static 'assets/gauge.js/dist/gauge.min.js' %}"></script>
+<!-- bootstrap-progressbar -->
+<script src="{% static 'assets/bootstrap-progressbar/bootstrap-progressbar.min.js' %}"></script>
+<!-- iCheck -->
+<script src="{% static 'assets/iCheck/icheck.min.js' %}"></script>
+<!-- Skycons -->
+<script src="{% static 'assets/skycons/skycons.js' %}"></script>
+<!-- Flot -->
+<script src="{% static 'assets/Flot/jquery.flot.js' %}"></script>
+<script src="{% static 'assets/Flot/jquery.flot.pie.js' %}"></script>
+<script src="{% static 'assets/Flot/jquery.flot.time.js' %}"></script>
+<script src="{% static 'assets/Flot/jquery.flot.stack.js' %}"></script>
+<script src="{% static 'assets/Flot/jquery.flot.resize.js' %}"></script>
+<!-- Flot plugins -->
+<script src="{% static 'assets/flot.orderbars/js/jquery.flot.orderBars.js' %}"></script>
+<script src="{% static 'assets/flot-spline/js/jquery.flot.spline.min.js' %}"></script>
+<script src="{% static 'assets/flot.curvedlines/curvedLines.js' %}"></script>
+<!-- DateJS -->
+<script src="{% static 'assets/DateJS/build/date.js' %}"></script>
+<!-- JQVMap -->
+<script src="{% static 'assets/jqvmap/dist/jquery.vmap.js' %}"></script>
+<script src="{% static 'assets/jqvmap/dist/maps/jquery.vmap.world.js' %}"></script>
+<script src="{% static 'assets/jqvmap/examples/js/jquery.vmap.sampledata.js' %}"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="{% static 'assets/moment/min/moment.min.js' %}"></script>
+<script src="{% static 'assets/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="{% static 'build/js/custom.min.js' %}"></script>
+
+</body>
+</html>
