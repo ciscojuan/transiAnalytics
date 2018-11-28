@@ -4,6 +4,14 @@ from bokeh.models import ColumnDataSource, FactorRange
 from bokeh.transform import factor_cmap
 from bokeh.resources import CDN
 from bokeh.embed import components
+from bokeh.palettes import Category20c
+from bokeh.transform import cumsum
+from math import pi
+import pandas as pd
+from pprint import pprint
+from bokeh.palettes import Spectral6
+from bokeh.models.tools import HoverTool
+
 
 def index(request):
     x = [i for i in range(10)]
@@ -17,14 +25,18 @@ def index(request):
     plot.line(x, x3, legend='x3', line_width=2, line_color='#31B404')
     plot.sizing_mode = 'scale_width'
 
-    script, div = components(plot, CDN)
     bars_ = bars()
-    script_b, div_bar = components(bars_, CDN)
+    pie_ = pie()
+    script, div = components(plot, CDN)
+    script_bar, div_bar = components(bars_, CDN)
+    script_pie, div_pie = components(pie_, CDN)
     data = {'user_name': 'Camilo',
-            'scritp_b': script_b,
-            'div_b': div_bar,
+            'scritp_bar': script_bar,
+            'div_bar': div_bar,
             'scritp_': script,
-            'div_': div
+            'div_': div,
+            'scritp_pie': script_pie,
+            'div_pie': div_pie,
             }
     return render(request, 'analytics/index.html', data)
 
@@ -58,3 +70,66 @@ def bars():
     p.xgrid.grid_line_color = None
     p.sizing_mode = 'scale_width'
     return p
+
+
+def pie():
+    x = {
+        'United States': 157,
+        'United Kingdom': 93,
+        'Japan': 89
+    }
+
+    data = pd.Series(x).reset_index(name='value').rename(columns={'index': 'country'})
+    data['angle'] = data['value'] / data['value'].sum() * 2 * pi
+    data['color'] = Category20c[len(x)]
+
+    p = figure(plot_height=350, title="Pie Chart", toolbar_location=None,
+               tools="hover", tooltips="@country: @value", x_range=(-0.5, 1.0))
+
+    p.wedge(x=0, y=1, radius=0.4,
+            start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
+            line_color="white", fill_color='color', legend='country', source=data)
+
+    p.axis.axis_label = None
+    p.axis.visible = False
+    p.grid.grid_line_color = None
+
+    return p
+
+
+def byGender(request):
+    df = pd.read_excel('analytics/datasets/lesiones-accidentes-transito-2018.xlsx')
+    grouped = df.groupby('Sexo')[['Cantidad']].count()
+    pprint(df['Sexo'].size)
+    pprint(grouped)
+    source = ColumnDataSource(grouped)
+    genders = source.data['Sexo'].tolist()
+    p = figure(x_range=genders)
+    color_map = factor_cmap(field_name='Sexo', palette=Spectral6, factors=genders)
+    p.vbar(x='Sexo', top='Cantidad', source=source, width=0.70, color=color_map, legend="Sexo")
+    p.title.text = 'Accidentes de Transito'
+    p.xaxis.axis_label = 'Genero'
+    p.yaxis.axis_label = 'Cantidad'
+
+    hover = HoverTool()
+    hover.tooltips = [
+        ("Totals", "@Edad / @Escolaridad / @Estado_civil ")]
+
+    hover.mode = 'vline'
+    p.add_tools(hover)
+
+    p.xgrid.grid_line_color = None
+    p.y_range.start = 0
+    p.y_range.end = 150
+    p.legend.orientation = "vertical"
+    p.legend.location = "top_right"
+    p.sizing_mode = 'scale_width'
+    p.height = 300
+
+    script_gender, div_gender = components(p, CDN)
+    data = {'script_gender': script_gender,
+            'div_gender': div_gender}
+    return render(request, 'analytics/byGender.html', data)
+
+
+
