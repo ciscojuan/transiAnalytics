@@ -113,7 +113,7 @@ def crashesbyGender(request):
 
     hover = HoverTool()
     hover.tooltips = [
-        ("Totals", "@Edad / @Escolaridad / @Estado_civil ")]
+        ("Edad / Escolaridad / Estado civil", "@Edad / @Escolaridad / @Estado_civil ")]
 
     hover.mode = 'vline'
     p.add_tools(hover)
@@ -147,7 +147,7 @@ def diesbyGender(request):
 
     hover = HoverTool()
     hover.tooltips = [
-        ("Totals", "@Edad / @Escolaridad / @Estado_civil ")]
+        ("Edad / Escolaridad / Estado civil", "@Edad / @Escolaridad / @Estado_civil ")]
 
     hover.mode = 'vline'
     p.add_tools(hover)
@@ -186,7 +186,7 @@ def crashesbymovilKind(request):
 
         hover = HoverTool()
         hover.tooltips = [
-        ("Totals", "@Edad / @sexo / @Estado civil ")]
+        ("Edad / Escolaridad / Estado civil", "@Edad / @Escolaridad / @Estado_civil ")]
 
         hover.mode = 'vline'
 
@@ -226,7 +226,7 @@ def diesbymovilKind(request):
 
         hover = HoverTool()
         hover.tooltips = [
-        ("Totals", "@Edad / @sexo / @Estado civil ")]
+        ("Edad / Escolaridad / Estado civil", "@Edad / @Escolaridad / @Estado_civil ")]
 
         hover.mode = 'vline'
 
@@ -276,7 +276,7 @@ def diesbymovilKind_Agresor():
 
         hover = HoverTool()
         hover.tooltips = [
-        ("Totals", "@Edad / @sexo / @Estado civil ")]
+        ("Edad / Escolaridad / Estado civil", "@Edad / @Escolaridad / @Estado_civil ")]
 
         hover.mode = 'vline'
 
@@ -303,7 +303,7 @@ def diesByEscolaridad(request):
         data['color'] = Category20c[len(grouped)]
 
         p = figure(plot_height=350, title="Escolaridad", toolbar_location=None,
-                tools="hover", tooltips="@Escolaridad: @value", x_range=(-0.5, 1.0))
+                tools="hover", tooltips="Escolaridad: @value", x_range=(-0.5, 1.0))
 
         p.wedge(x=0, y=1, radius=0.4,
                 start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
@@ -318,3 +318,166 @@ def diesByEscolaridad(request):
             'div_gender': div_gender}
 
         return render(request, 'analytics/diesByEscolaridad.html', data)
+
+def crashesByEscolaridad(request):
+        df = pd.read_excel('analytics\datasets\lesiones-accidentes-transito-2018.xlsx')
+
+        grouped = df.groupby('Escolaridad')['Cantidad'].sum()
+        grouped *100
+
+        print(grouped)
+
+        data = pd.Series(grouped).reset_index(name='value').rename(columns={'index':'Escolaridad'})
+        data['angle'] = data['value']/data['value'].sum() * 2*pi
+        data['color'] = Category20c[len(grouped)]
+
+        p = figure(plot_height=350, title="Escolaridad", toolbar_location=None,
+                tools="hover", tooltips="Escolaridad: @value", x_range=(-0.5, 1.0))
+
+        p.wedge(x=0, y=1, radius=0.4,
+                start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
+                line_color="white", fill_color='color', legend='Escolaridad', source=data)
+
+        p.axis.axis_label=None
+        p.axis.visible=False
+        p.grid.grid_line_color = None
+
+        script_gender, div_gender = components(p, CDN)
+        data = {'script_gender': script_gender,
+            'div_gender': div_gender}
+
+        return render(request, 'analytics/crashesByEscolaridad.html', data)
+
+def crashesbyEdad(request):
+        df = pd.read_excel('analytics\datasets\lesiones-accidentes-transito-2018.xlsx')
+
+        grouped = df.groupby('Edad')['Cantidad', 'Sexo'].sum()
+        print(grouped)
+
+        source = ColumnDataSource(grouped)
+        countries = source.data['Edad'].tolist()
+        p = figure(x_range=countries)
+
+        color_map = factor_cmap(field_name='Edad', palette=Spectral6, factors=countries)
+        p.vbar(x='Edad', top='Cantidad', source=source, width=0.70, color=color_map ,legend="Edad")
+
+        p.title.text ='Mortalidad en Accidentes de Transito'
+        p.xaxis.axis_label = 'Edad'
+        p.yaxis.axis_label = 'Cantidad'
+
+        hover = HoverTool()
+        hover.tooltips = [
+        ("Edad :", "@Edad  ")]
+
+        hover.mode = 'vline'
+
+        p.add_tools(hover)
+
+        p.xgrid.grid_line_color = None
+        p.y_range.start = 0
+        p.y_range.end = 150
+        p.legend.orientation = "vertical"
+        p.legend.location = "top_right"
+
+        script_gender, div_gender = components(p, CDN)
+        data = {'script_gender': script_gender,
+            'div_gender': div_gender}
+
+        return render(request, 'analytics/crashesByEdad.html', data)
+
+def diesByEdad(request):
+        df = pd.read_excel('analytics\datasets\homicidios-accidentes-transito-2018_1.xls')
+
+        grouped = df.groupby('Edad')['Cantidad', 'Sexo'].sum()
+
+        print(grouped)
+
+        source = ColumnDataSource(grouped)
+        countries = source.data['Edad'].tolist()
+        p = figure(x_range=countries)
+
+        color_map = factor_cmap(field_name='Edad', palette=Spectral6, factors=countries)
+
+        p.vbar(x='Edad', top='Cantidad', source=source, width=0.70, color=color_map ,legend="Edad")
+
+        p.title.text ='Mortalidad en Accidentes de Transito'
+        p.xaxis.axis_label = 'Edad'
+        p.yaxis.axis_label = 'Cantidad'
+
+        hover = HoverTool()
+        hover.tooltips = [
+        ("Edad :", "@Edad  ")]
+
+        hover.mode = 'vline'
+
+        p.add_tools(hover)
+
+        p.xgrid.grid_line_color = None
+        p.y_range.start = 0
+        p.y_range.end = 150
+        p.legend.orientation = "vertical"
+        p.legend.location = "top_right"
+
+        script_gender, div_gender = components(p, CDN)
+        data = {'script_gender': script_gender,
+            'div_gender': div_gender}
+
+        return render(request, 'analytics/diesByEdad.html', data)
+
+def crashesbyCivil(request):
+        df = pd.read_excel('analytics\datasets\lesiones-accidentes-transito-2018.xlsx')
+
+        grouped = df.groupby('Estado civil')['Cantidad'].sum()
+        grouped *100
+
+        print(grouped)
+
+        data = pd.Series(grouped).reset_index(name='value').rename(columns={'index':'Escolaridad'})
+        data['angle'] = data['value']/data['value'].sum() * 2*pi
+        data['color'] = Category20c[len(grouped)]
+
+        p = figure(plot_height=350, title="Estado civil", toolbar_location=None,
+                tools="hover", tooltips="Estado civil: @value", x_range=(-0.5, 1.0))
+
+        p.wedge(x=0, y=1, radius=0.4,
+                start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
+                line_color="white", fill_color='color', legend='Estado civil', source=data)
+
+        p.axis.axis_label=None
+        p.axis.visible=False
+        p.grid.grid_line_color = None
+
+        script_gender, div_gender = components(p, CDN)
+        data = {'script_gender': script_gender,
+            'div_gender': div_gender}
+
+        return render(request, 'analytics/crashesbyCivil.html', data)
+
+def diesbyCivil(request):
+        df = pd.read_excel('analytics\datasets\homicidios-accidentes-transito-2018_1.xls')
+
+        grouped = df.groupby('Estado civil')['Cantidad'].sum()
+        grouped *100
+
+        print(grouped)
+
+        data = pd.Series(grouped).reset_index(name='value').rename(columns={'index':'Escolaridad'})
+        data['angle'] = data['value']/data['value'].sum() * 2*pi
+        data['color'] = Category20c[len(grouped)]
+
+        p = figure(plot_height=350, title="Estado civil", toolbar_location=None,
+                tools="hover", tooltips="Estado civil: @value", x_range=(-0.5, 1.0))
+
+        p.wedge(x=0, y=1, radius=0.4,
+                start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
+                line_color="white", fill_color='color', legend='Estado civil', source=data)
+
+        p.axis.axis_label=None
+        p.axis.visible=False
+        p.grid.grid_line_color = None
+
+        script_gender, div_gender = components(p, CDN)
+        data = {'script_gender': script_gender,
+            'div_gender': div_gender}
+
+        return render(request, 'analytics/diesByCivil.html', data)
