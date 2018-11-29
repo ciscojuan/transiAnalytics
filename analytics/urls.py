@@ -8,5 +8,4 @@ urlpatterns = [
     path('crashesbymovilKind/', views.crashesbymovilKind, name='crashesbymovilKind'),
     path('diesbymovilKind/', views.diesbymovilKind, name='diesbymovilKind'),
     path('diesbyEscolaridad/', views.diesByEscolaridad, name='diesbyEscolaridad'),
-    path('reporte_homicidios/', views.reporte_homicidios, name='reporte_homicidios'),
 ]

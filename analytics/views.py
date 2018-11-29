@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from bokeh.plotting import figure
-from bokeh.models import ColumnDataSource, Plot, LinearAxis, Grid, Circle, HoverTool, BoxSelectTool
+from bokeh.models import ColumnDataSource, FactorRange
 from bokeh.transform import factor_cmap
 from bokeh.resources import CDN
 from bokeh.embed import components
@@ -11,8 +11,7 @@ import pandas as pd
 from pprint import pprint
 from bokeh.palettes import Spectral6
 from bokeh.models.tools import HoverTool
-from bokeh.models.widgets import DataTable, DateFormatter, TableColumn
-from bokeh.layouts import widgetbox
+
 
 def index(request):
     x = [i for i in range(10)]
@@ -319,53 +318,3 @@ def diesByEscolaridad(request):
             'div_gender': div_gender}
 
         return render(request, 'analytics/diesByEscolaridad.html', data)
-
-def reporte_homicidios(request):
-        
-        df = pd.read_excel('analytics\datasets\homicidios-accidentes-transito-2018_1.xls')
-        data = dict(
-                fecha        = df['Fecha'],
-                Departamento = df['Departamento'],
-                municipio    = df['Municipio'],
-                dia          = df['Dia'],
-                hora         = df['Hora'],
-                barrio       = df['Barrio'],
-                sitio        = df['Clase de sitio'],
-                arma         = df['Arma empleada'],
-                agresor      = df['Movil Agresor'],
-                Movil        = df['Movil Victima'],
-                edad         = df['Edad'],
-                sexo         = df['Sexo'],
-                civil        = df['Estado civil'],
-                profesion    = df['Profesion'],
-                escolaridad  = df['Escolaridad'],
-                cantidad     = df['Cantidad']
-        )
-        source = ColumnDataSource(data)
-
-        columns = [
-                TableColumn(field="fecha", title="FECHA", formatter=DateFormatter()),
-                TableColumn(field="dpartamento", title="DEPARTAMENTO"),
-                TableColumn(field="municipio", title="MUNICIPIO"),
-                TableColumn(field="dia", title="DIA"),
-                TableColumn(field="hora", title="HORA"),
-                TableColumn(field="barrio", title="BARRIO"),
-                TableColumn(field="sitio", title="SITIO EMPLEADO"),
-                TableColumn(field="arma", title="ARMA EMPLEADA"),
-                TableColumn(field="agresor", title="Movil Agresor"),
-                TableColumn(field="movil", title="Movil Victima"),
-                TableColumn(field="edad", title="EDAD VICTIMA"),
-                TableColumn(field="sexo", title="GENERO VICTIMA"),
-                TableColumn(field="civil", title="ESTADO CIVIL"),
-                TableColumn(field="profesion", title="PROFESION"),
-                TableColumn(field="escolaridad", title="ESCOLARIDAD"),
-                TableColumn(field="cantidad", title="Cantidad"),
-
-                ]
-        data_table = DataTable(source=source, columns=columns, width=800, height=600)
-
-        script_reporte, div_reporte = components(widgetbox(data_table), CDN)
-        data = {'script_reporte': script_reporte,
-            'div_reporte': div_reporte}
-
-        return render(request, 'analytics/reporte.html', data)
