@@ -2,14 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9498bb00-f198-407f-95b8-47cb19ebd12b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/analytics/datasets/lesiones-accidentes-transito-2018.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analytics/templates/analytics/byGender.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analytics/templates/analytics/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/analytics/templates/analytics/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analytics/datasets/homicidios-accidentes-transito-2018_1.xls" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analytics/templates/analytics/crashesByEscolaridad.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analytics/templates/analytics/crashesbyCivil.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analytics/templates/analytics/crashesbyEdad.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analytics/templates/analytics/crashesbyGender.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analytics/templates/analytics/crashesbymovilKind.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analytics/templates/analytics/diesByEscolaridad.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analytics/templates/analytics/diesbyCivil.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analytics/templates/analytics/diesbyEdad.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analytics/templates/analytics/diesbyGender.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analytics/templates/analytics/diesbymovilKind.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analytics/templates/analytics/reporte.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_table.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/muertes_by_accidente.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analytics/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/analytics/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analytics/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/analytics/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/side_bar/side_bar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/side_bar/side_bar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/top_navigator/top_navigator.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/top_navigator/top_navigator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transinalytics/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/transinalytics/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,33 +50,33 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="4" />
-          <entry key="html" value="31" />
+          <entry key="html" value="39" />
           <entry key="js" value="11" />
           <entry key="json" value="1" />
           <entry key="md" value="2" />
-          <entry key="py" value="68" />
+          <entry key="py" value="76" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="4" />
-          <entry key="HTML" value="31" />
+          <entry key="HTML" value="39" />
           <entry key="JSON" value="1" />
           <entry key="JavaScript" value="11" />
           <entry key="Markdown" value="2" />
-          <entry key="Python" value="68" />
+          <entry key="Python" value="76" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="1741" />
-          <entry key="py" value="2488" />
+          <entry key="html" value="1876" />
+          <entry key="py" value="3092" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="1741" />
-          <entry key="Python" value="2488" />
+          <entry key="HTML" value="1876" />
+          <entry key="Python" value="3092" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -76,24 +87,66 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/analytics/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="29" />
+            <state relative-caret-position="500">
+              <caret line="446" column="37" selection-start-line="446" selection-start-column="37" selection-end-line="446" selection-end-column="37" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <marker date="1543378787508" expanded="true" signature="2465:3222" ph="..." />
+                <marker date="1543549426530" expanded="true" signature="2487:3244" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/analytics/urls.py">
+        <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/crashesbyGender.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="35" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="289">
+              <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="731">
+              <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/header/header.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/base/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/top_navigator/top_navigator.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="41" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/transinalytics/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="398">
+              <caret line="132" column="8" selection-start-line="132" selection-end-line="132" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -122,12 +175,18 @@
       <find>wel</find>
       <find>welco</find>
       <find>6</find>
+      <find>head</find>
+      <find>&gt;&gt;</find>
+      <find>/'</find>
+      <find>../</find>
+      <find>url</find>
     </findStrings>
     <replaceStrings>
       <replace>{% static 'assets/</replace>
       <replace>s' %} &quot;&gt;</replace>
       <replace>%}&quot;&gt;</replace>
       <replace>'assets/</replace>
+      <replace>'</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -145,17 +204,18 @@
         <option value="$PROJECT_DIR$/transinalytics/urls.py" />
         <option value="$PROJECT_DIR$/login/urls.py" />
         <option value="$PROJECT_DIR$/analytics/models.py" />
-        <option value="$PROJECT_DIR$/transinalytics/settings.py" />
         <option value="$PROJECT_DIR$/analytics/templates/analytics/index2.html" />
         <option value="$PROJECT_DIR$/templates/header/header.html" />
-        <option value="$PROJECT_DIR$/templates/base/base.html" />
         <option value="$PROJECT_DIR$/templates/top_navigator/top_navigator.html" />
-        <option value="$PROJECT_DIR$/analytics/urls.py" />
         <option value="$PROJECT_DIR$/analytics/templates/analytics/index.html" />
         <option value="$PROJECT_DIR$/../../Diplomado/Graficas/Policia/accidente-genero.py" />
         <option value="$PROJECT_DIR$/analytics/templates/analytics/byGender.html" />
-        <option value="$PROJECT_DIR$/templates/side_bar/side_bar.html" />
         <option value="$PROJECT_DIR$/../../Diplomado/Graficas/SecretariaMovilidad/homicidios-escolaridad.py" />
+        <option value="$PROJECT_DIR$/analytics/urls.py" />
+        <option value="$PROJECT_DIR$/templates/side_bar/side_bar.html" />
+        <option value="$PROJECT_DIR$/transinalytics/settings.py" />
+        <option value="$PROJECT_DIR$/templates/base/base.html" />
+        <option value="$PROJECT_DIR$/analytics/templates/analytics/crashesbyGender.html" />
         <option value="$PROJECT_DIR$/analytics/views.py" />
       </list>
     </option>
@@ -173,7 +233,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -184,18 +243,29 @@
             <path>
               <item name="transinalytics" type="b2602c69:ProjectViewProjectNode" />
               <item name="transinalytics" type="462c0819:PsiDirectoryNode" />
+              <item name="analytics" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="transinalytics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="transinalytics" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="transinalytics" type="b2602c69:ProjectViewProjectNode" />
               <item name="transinalytics" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="side_bar" type="462c0819:PsiDirectoryNode" />
+              <item name="top_navigator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="transinalytics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="transinalytics" type="462c0819:PsiDirectoryNode" />
+              <item name="transinalytics" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -301,12 +371,12 @@
     <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27380952" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27857143" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.064615384" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.064615384" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -326,13 +396,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/login/apps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/login/migrations/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -433,13 +496,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/transinalytics/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/footer/footer.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -498,62 +554,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/transinalytics/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1921">
-          <caret line="113" column="27" selection-start-line="113" selection-start-column="27" selection-end-line="113" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/top_navigator/top_navigator.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/header/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="28" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/byGender.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/side_bar/side_bar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="71" lean-forward="true" selection-start-line="13" selection-start-column="71" selection-end-line="13" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analytics/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="35" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -578,19 +582,95 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-end-line="10" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="66" lean-forward="true" selection-start-line="6" selection-start-column="66" selection-end-line="6" selection-end-column="66" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/header/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/top_navigator/top_navigator.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="41" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/transinalytics/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="36" lean-forward="true" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+          <folding>
+            <element signature="e#638#670#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/transinalytics/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="132" column="8" selection-start-line="132" selection-end-line="132" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/side_bar/side_bar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="60" lean-forward="true" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analytics/templates/analytics/crashesbyGender.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/2021825827/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="276" column="4" selection-start-line="276" selection-start-column="4" selection-end-line="276" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/analytics/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="29" />
+        <state relative-caret-position="500">
+          <caret line="446" column="37" selection-start-line="446" selection-start-column="37" selection-end-line="446" selection-end-column="37" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1543378787508" expanded="true" signature="2465:3222" ph="..." />
+            <marker date="1543549426530" expanded="true" signature="2487:3244" ph="..." />
           </folding>
         </state>
       </provider>
