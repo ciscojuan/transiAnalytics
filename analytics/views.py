@@ -11,35 +11,70 @@ import pandas as pd
 from pprint import pprint
 from bokeh.palettes import Spectral6
 from bokeh.models.tools import HoverTool
+from bokeh.models.widgets import Panel, Tabs
 
 
 def index(request):
-    x = [i for i in range(10)]
-    x2 = [i ** 2 for i in range(10)]
-    x3 = [i ** 3 for i in range(10)]
-    title_ = 'Y = f(x) = x^2'
+        df = pd.read_excel('analytics\datasets\homicidios-accidentes-transito-2018_1.xls')
+        grouped = df.groupby('Sexo')['Cantidad'].sum()
+        data = pd.Series(grouped).reset_index(name='value').rename(columns={'index':'Sexo'})
+        data['angle'] = data['value']/data['value'].sum() * 2*pi
+        data['color'] = Category20c[len(grouped)]
+        p = figure(plot_height=350, title="Sexo", toolbar_location=None,
+                tools="hover", tooltips="@Sexo: @value", x_range=(-0.5, 1.0))
+        p.wedge(x=0, y=1, radius=0.4,
+                start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
+                line_color="white", fill_color='color', legend='Sexo', source=data)
+        p.axis.axis_label=None
+        p.axis.visible=False
+        p.grid.grid_line_color = None
+        tab1 = Panel(child=p, title="Genero")
+        ############################################    Plot # 2
+        grouped1 = df.groupby('Profesion')['Cantidad'].sum()
+        data1 = pd.Series(grouped1).reset_index(name='value').rename(columns={'index':'Profesion'})
+        data1['angle'] = data1['value']/data1['value'].sum() * 2*pi
+        data1['color'] = Category20c[len(grouped1)]
+        p1 = figure(plot_height=350, title="Profesion", toolbar_location=None,
+                tools="hover", tooltips="@Profesion: @value", x_range=(-0.5, 1.0))
+        p1.wedge(x=0, y=1, radius=0.4,
+                start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
+                line_color="white", fill_color='color', legend='Profesion', source=data1)
+        p1.axis.axis_label=None
+        p1.axis.visible=False
+        p1.grid.grid_line_color = None
+        tab2 = Panel(child=p1, title="Profesion")
+        ##############################PLOT3
+        grouped2 = df.groupby('Escolaridad')['Cantidad'].sum()
+        print(grouped)
+        data2 = pd.Series(grouped2).reset_index(name='value').rename(columns={'index':'Escolaridad'})
+        data2['angle'] = data2['value']/data2['value'].sum() * 2*pi
+        data2['color'] = Category20c[len(grouped2)]
+        p2 = figure(plot_height=350, title="Escolaridad", toolbar_location=None,
+                tools="hover", tooltips="@Escolaridad: @value", x_range=(-0.5, 1.0))
+        p2.wedge(x=0, y=1, radius=0.4,
+                start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
+                line_color="white", fill_color='color', legend='Escolaridad', source=data2)
+        p2.axis.axis_label=None
+        p2.axis.visible=False
+        p2.grid.grid_line_color = None
+        tab3 = Panel(child=p2, title="Movil Victima")
 
-    plot = figure(title=title_, x_axis_label='Indep.', y_axis_label='Dep')
-
-    plot.line(x, x2, legend='x2', line_width=2, line_color="#666699")
-    plot.line(x, x3, legend='x3', line_width=2, line_color='#31B404')
-    plot.sizing_mode = 'scale_width'
-    plot.height = 300
-
-    bars_ = bars()
-    pie_ = pie()
-    script, div = components(plot, CDN)
-    script_bar, div_bar = components(bars_, CDN)
-    script_pie, div_pie = components(pie_, CDN)
-    data = {'user_name': 'Camilo',
-            'scritp_bar': script_bar,
-            'div_bar': div_bar,
-            'scritp_': script,
-            'div_': div,
-            'scritp_pie': script_pie,
-            'div_pie': div_pie,
-            }
-    return render(request, 'analytics/index.html', data)
+        tabs = Tabs(tabs=[ tab1, tab2, tab3 ])
+        
+        bars_ = bars()
+        pie_ = pie()
+        script, div = components(tabs, CDN)
+        script_bar, div_bar = components(bars_, CDN)
+        script_pie, div_pie = components(pie_, CDN)
+        data = {'user_name': 'Camilo',
+                'scritp_bar': script_bar,
+                'div_bar': div_bar,
+                'scritp_': script,
+                'div_': div,
+                'scritp_pie': script_pie,
+                'div_pie': div_pie,
+                }
+        return render(request, 'analytics/index.html', data)
 
 
 def bars():
