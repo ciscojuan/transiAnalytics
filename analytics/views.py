@@ -14,7 +14,6 @@ from bokeh.models.tools import HoverTool
 from bokeh.core.properties import value
 
 
-
 def index(request):
     x = [i for i in range(10)]
     x2 = [i ** 2 for i in range(10)]
@@ -49,19 +48,14 @@ def bars():
     pprint(df)
     state = df['Estado civil'].unique()
     gender = df['Sexo'].unique()
-    colors = ["#c9d9d3", "#718dbf", "#e84d60"]
-    pprint(state)
-    print(gender)
+    colors = ["#c9d9d3", "#718dbf"]
 
     data = {'state': state,
-            'FEMENINO': [3, 2],
-            'MASCULINO': [5, 5],
-            '-': [2,3]
+            'FEMENINO': [115, 0],
+            'MASCULINO': [340, 3],
             }
 
-    #data = {}
-
-    p = figure(x_range=state, plot_height=250, title="Fruit Counts by Year",
+    p = figure(x_range=state, plot_height=250, title="",
                toolbar_location=None, tools="hover", tooltips="$name @state: @$name")
 
     p.vbar_stack(gender, x='state', width=0.9, color=colors, source=data,
@@ -75,30 +69,33 @@ def bars():
     p.legend.location = "top_left"
     p.legend.orientation = "horizontal"
     p.sizing_mode = 'scale_width'
+    p.height = 525
     return p
 
 
 def pie():
-    x = {
-        'United States': 157,
-        'United Kingdom': 93,
-        'Japan': 89
-    }
+    df = pd.read_excel('analytics\datasets\lesiones-accidentes-transito-2018.xlsx')
 
-    data = pd.Series(x).reset_index(name='value').rename(columns={'index': 'country'})
-    data['angle'] = data['value'] / data['value'].sum() * 2 * pi
-    data['color'] = Category20c[len(x)]
+    grouped = df.groupby('Estado civil')['Cantidad'].sum()
 
-    p = figure(plot_height=350, title="Pie Chart", toolbar_location=None,
-               tools="hover", tooltips="@country: @value", x_range=(-0.5, 1.0))
+    data = pd.Series(grouped).reset_index(name='value').rename(columns={'Estado civil':'estado'})
+    data['angle'] = data['value']/data['value'].sum() * 2*pi
+    data['color'] = Category20c[len(data)]
+    print(grouped)
+    print(data)
 
-    p.wedge(x=0, y=1, radius=0.4,
+    p = figure(plot_height=350, title="", toolbar_location=None,
+               tools="hover", tooltips="@estado: @value", x_range=(-0.5, 1.0))
+
+    p.wedge(x=0, y=1, radius=0.3,
             start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
-            line_color="white", fill_color='color', legend='country', source=data)
+            line_color="white", fill_color='color', legend='estado', source=data)
 
-    p.axis.axis_label = None
-    p.axis.visible = False
+    p.axis.axis_label=None
+    p.axis.visible=False
     p.grid.grid_line_color = None
+    p.sizing_mode = 'scale_width'
+    p.height = 300
 
     return p
 
