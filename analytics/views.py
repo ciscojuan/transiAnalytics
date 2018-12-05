@@ -55,7 +55,7 @@ def bars():
             'MASCULINO': [340, 3],
             }
 
-    p = figure(x_range=state, plot_height=250, title="",
+    p = figure(x_range=state, title="",
                toolbar_location=None, tools="hover", tooltips="$name @state: @$name")
 
     p.vbar_stack(gender, x='state', width=0.9, color=colors, source=data,
@@ -83,9 +83,11 @@ def pie():
     data['color'] = Category20c[len(data)]
     print(grouped)
     print(data)
+    column_sum = data['value'].sum()
+    data['percentage'] = (data['value'] / column_sum)
 
     p = figure(plot_height=350, title="", toolbar_location=None,
-               tools="hover", tooltips="@estado: @value", x_range=(-0.5, 1.0))
+               tools="hover", tooltips="@estado: @value <br> @percentage{0.00%}", x_range=(-0.5, 1.0))
 
     p.wedge(x=0, y=1, radius=0.3,
             start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
@@ -124,7 +126,7 @@ def crashesbyGender(request):
     p.legend.orientation = "vertical"
     p.legend.location = "top_right"
     p.sizing_mode = 'scale_width'
-    p.height = 300
+    p.height = 260
 
     script_gender, div_gender = components(p, CDN)
     data = {'script_gender': script_gender,
@@ -142,23 +144,21 @@ def diesbyGender(request):
     p = figure(x_range=genders)
     color_map = factor_cmap(field_name='Sexo', palette=Spectral6, factors=genders)
     p.vbar(x='Sexo', top='Cantidad', source=source, width=0.70, color=color_map, legend="Sexo")
-    p.title.text = 'Homicidios Accidentes de Transito'
     p.xaxis.axis_label = 'Genero'
     p.yaxis.axis_label = 'Cantidad'
 
     hover = HoverTool()
-    hover.tooltips = [
-        ("Edad / Escolaridad / Estado civil", "@Edad / @Escolaridad / @Estado_civil ")]
-
+    hover.tooltips = "@Sexo : @Cantidad"
     hover.mode = 'vline'
     p.add_tools(hover)
 
     p.xgrid.grid_line_color = None
     p.y_range.start = 0
-    p.y_range.end = 150
+    p.y_range.end = grouped['Cantidad'].max() + 100
     p.legend.orientation = "vertical"
     p.legend.location = "top_right"
     p.sizing_mode = 'scale_width'
+    p.height = 260
 
     script_gender, div_gender = components(p, CDN)
     data = {'script_gender': script_gender,
@@ -179,15 +179,13 @@ def crashesbymovilKind(request):
 
     color_map = factor_cmap(field_name='Movil Victima', palette=Spectral6, factors=countries)
 
-    p.vbar(x='Movil Victima', top='Cantidad', source=source, width=0.70, color=color_map ,legend="Movil Victima")
+    p.vbar(x='Movil Victima', top='Cantidad', source=source, width=0.70, color=color_map, legend="Movil Victima")
 
-    p.title.text ='Mortalidad en Accidentes de Transito'
-    p.xaxis.axis_label = 'Estado Victima'
+    p.xaxis.axis_label = 'Movilización Victima'
     p.yaxis.axis_label = 'Cantidad'
 
     hover = HoverTool()
-    hover.tooltips = [
-        ("Edad / Escolaridad / Estado civil", "@Edad / @Escolaridad / @Estado_civil ")]
+    hover.tooltips = "@Cantidad"
 
     hover.mode = 'vline'
 
@@ -195,15 +193,19 @@ def crashesbymovilKind(request):
 
     p.xgrid.grid_line_color = None
     p.y_range.start = 0
-    p.y_range.end = 150
+    p.y_range.end = grouped['Cantidad'].max() + 100
     p.legend.orientation = "vertical"
     p.legend.location = "top_right"
+    p.sizing_mode = 'scale_width'
+    p.xaxis.major_label_orientation = "vertical"
+    p.height = 350
 
     script_gender, div_gender = components(p, CDN)
     data = {'script_gender': script_gender,
             'div_gender': div_gender}
 
     return render(request, 'analytics/crashesbymovilKind.html', data)
+
 
 def diesbymovilKind(request):
 
@@ -221,13 +223,11 @@ def diesbymovilKind(request):
 
     p.vbar(x='Movil Victima', top='Cantidad', source=source, width=0.70, color=color_map ,legend="Movil Victima")
 
-    p.title.text ='Mortalidad en Accidentes de Transito'
-    p.xaxis.axis_label = 'Estado Victima'
+    p.xaxis.axis_label = 'Movilización Victima'
     p.yaxis.axis_label = 'Cantidad'
 
     hover = HoverTool()
-    hover.tooltips = [
-        ("Edad / Escolaridad / Estado civil", "@Edad / @Escolaridad / @Estado_civil ")]
+    hover.tooltips = "@Cantidad"
 
     hover.mode = 'vline'
 
@@ -235,9 +235,11 @@ def diesbymovilKind(request):
 
     p.xgrid.grid_line_color = None
     p.y_range.start = 0
-    p.y_range.end = 150
+    p.y_range.end = grouped['Cantidad'].max() + 100
     p.legend.orientation = "vertical"
     p.legend.location = "top_right"
+    p.sizing_mode = 'scale_width'
+    p.height = 550
 
     dies_ = diesbymovilKind_Agresor()
 
@@ -271,13 +273,11 @@ def diesbymovilKind_Agresor():
 
     p.vbar(x='Movil Agresor', top='Cantidad', source=source, width=0.70, color=color_map ,legend="Movil Agresor")
 
-    p.title.text ='Mortalidad en Accidentes de Transito'
-    p.xaxis.axis_label = 'Estado Agresor'
+    p.xaxis.axis_label = 'Movilización Agresor'
     p.yaxis.axis_label = 'Cantidad'
 
     hover = HoverTool()
-    hover.tooltips = [
-        ("Edad / Escolaridad / Estado civil", "@Edad / @Escolaridad / @Estado_civil ")]
+    hover.tooltips = "@Cantidad"
 
     hover.mode = 'vline'
 
@@ -285,9 +285,11 @@ def diesbymovilKind_Agresor():
 
     p.xgrid.grid_line_color = None
     p.y_range.start = 0
-    p.y_range.end = 150
+    p.y_range.end = grouped['Cantidad'].max() + 100
     p.legend.orientation = "vertical"
     p.legend.location = "top_right"
+    p.sizing_mode = 'scale_width'
+    p.height = 550
 
     return p
 
@@ -324,7 +326,6 @@ def crashesByEscolaridad(request):
     df = pd.read_excel('analytics\datasets\lesiones-accidentes-transito-2018.xlsx')
 
     grouped = df.groupby('Escolaridad')['Cantidad'].sum()
-    grouped *100
 
     print(grouped)
 
@@ -332,8 +333,11 @@ def crashesByEscolaridad(request):
     data['angle'] = data['value']/data['value'].sum() * 2*pi
     data['color'] = Category20c[len(grouped)]
 
-    p = figure(plot_height=350, title="Escolaridad", toolbar_location=None,
-               tools="hover", tooltips="Escolaridad: @value", x_range=(-0.5, 1.0))
+    column_sum = data['value'].sum()
+    data['percentage'] = (data['value'] / column_sum)
+
+    p = figure(plot_height=250, toolbar_location=None,
+               tools="hover", tooltips="@Escolaridad: @value <br> @percentage{0.00%}", x_range=(-0.9, 1.1))
 
     p.wedge(x=0, y=1, radius=0.4,
             start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
@@ -342,6 +346,7 @@ def crashesByEscolaridad(request):
     p.axis.axis_label=None
     p.axis.visible=False
     p.grid.grid_line_color = None
+    p.sizing_mode = 'scale_width'
 
     script_gender, div_gender = components(p, CDN)
     data = {'script_gender': script_gender,
@@ -433,11 +438,13 @@ def crashesbyCivil(request):
     data = pd.Series(grouped).reset_index(name='value').rename(columns={'Estado civil':'estado'})
     data['angle'] = data['value']/data['value'].sum() * 2*pi
     data['color'] = Category20c[len(data)]
+    column_sum = data['value'].sum()
+    data['percentage'] = (data['value'] / column_sum)
     print(grouped)
     print(data)
 
-    p = figure(plot_height=350, title="", toolbar_location=None,
-               tools="hover", tooltips="@estado: @value", x_range=(-0.5, 1.0))
+    p = figure(plot_height=250, title="", toolbar_location=None,
+               tools="hover", tooltips="@estado: @value <br> @percentage{0.00%}", x_range=(-0.9, 1.1))
 
     p.wedge(x=0, y=1, radius=0.4,
             start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
@@ -459,23 +466,25 @@ def diesbyCivil(request):
     df = pd.read_excel('analytics\datasets\muertos-accidentes-transito-2018_1.xls')
 
     grouped = df.groupby('Estado civil')['Cantidad'].sum()
-
     print(grouped)
+    data = pd.Series(grouped).reset_index(name='value').rename(columns={'Estado civil': 'estado'})
+    data['angle'] = data['value'] / data['value'].sum() * 2 * pi
+    data['color'] = ['#3182bd', '#c6dbef']
+    column_sum = data['value'].sum()
+    data['percentage'] = (data['value'] / column_sum)
+    print(data)
 
-    data = pd.Series(grouped).reset_index(name='value').rename(columns={'index':'Escolaridad'})
-    data['angle'] = data['value']/data['value'].sum() * 2*pi
-    data['color'] = Category20c[len(grouped)]
-
-    p = figure(plot_height=350, title="Estado civil", toolbar_location=None,
-               tools="hover", tooltips="Estado civil: @value", x_range=(-0.5, 1.0))
+    p = figure(plot_height=250, title="", toolbar_location=None,
+               tools="hover", tooltips="@estado: @value <br> @percentage{0.00%}", x_range=(-0.9, 1.1))
 
     p.wedge(x=0, y=1, radius=0.4,
             start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
-            line_color="white", fill_color='color', legend='Estado civil', source=data)
+            line_color="white", fill_color='color', legend='estado', source=data)
 
-    p.axis.axis_label=None
-    p.axis.visible=False
+    p.axis.axis_label = None
+    p.axis.visible = False
     p.grid.grid_line_color = None
+    p.sizing_mode = 'scale_width'
 
     script_gender, div_gender = components(p, CDN)
     data = {'script_gender': script_gender,
